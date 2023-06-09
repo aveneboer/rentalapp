@@ -1,0 +1,103 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content {
+    position: absolute; /* Absoluut gepositioneerd binnen de wide-bar */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 50px;
+}
+
+.content h1 {
+    font-size: 36px; /* Pas de gewenste lettergrootte aan */
+    color: white; /* Pas de gewenste tekstkleur aan */
+    margin-bottom: 20px; /* Voeg ruimte toe onder de tekst */
+}
+
+.bar-container {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    width: 66.67%; /* 2/3 van de breedte */
+    /* Horizontaal centreren */
+    margin: 20px auto 0;
+}
+
+.bar-container p {
+    color: #000000;
+    font-size: 18px;
+    text-align: center;
+}
+.process-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(187, 187, 0);
+    padding: 20px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 250px;
+}
+
+.process-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 50px;
+}
+
+.checkbox-item {
+    margin-bottom: 10px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.columns-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+
+.column h1 {
+    color: rgb(187, 187, 0);
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+}
+.column h2 {
+    color: rgb(187, 187, 0);
+}
+.column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.white-space {
+    margin-top: 80px;
+}
+
+.column p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+

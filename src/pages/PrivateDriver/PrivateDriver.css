@@ -1,0 +1,9 @@
+.image-box {
+    width: 200px; /* Pas aan aan de gewenste grootte */
+    height: 200px; /* Pas aan aan de gewenste grootte */
+    overflow: hidden;
+    border-radius: 50%;
+}
+.column2 h3 {
+    color: rgb(187, 187, 0);
+}

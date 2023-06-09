@@ -1,0 +1,20 @@
+
+.button {
+    display: inline-block;
+    margin-top: 20px; /* Voeg ruimte toe boven de knop */
+    padding: 20px 30px;
+    border-radius: 50px;
+    background-color: #f1f1f1;
+    border: 2px solid #000000;
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    line-height: 0.3;
+}
+
+.button:hover {
+    background-color: #000000;
+    color: #ffffff;
+}

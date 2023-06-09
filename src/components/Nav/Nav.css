@@ -1,0 +1,46 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.nav-left {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgb(187, 187, 0);
+}
+.logo {
+    font-weight: bold;
+}
+.slogan {
+    font-style: italic;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 3em;
+    margin: 1em 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(187, 187, 0);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+button {
+    height: 30px;
+    padding: 0 1em;
+    margin-right: 1em;
+}

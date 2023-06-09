@@ -1,0 +1,94 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Typography (type selectors) */
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+h1, p, a {
+    margin: 0 1rem;
+}
+
+/* Layouts */
+/* home style with background image */
+.wide-bar {
+    position: relative; /* Nodig voor de absolute positionering van de content */
+    width: 100%;
+    height: 60vh;
+    background-image: url('/src/assets/geio-tischler-7hww7t6NLcg-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+.white-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 40vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Toegevoegde eigenschap om kolommen te laten meeschalen */
+}
+
+.column h1 {
+    color: rgb(187, 187, 0);
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+}
+.column h2 {
+    color: rgb(187, 187, 0);
+}
+.column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.white-space {
+    margin-top: 80px;
+}
+
+.column p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.column {
+    position: relative;
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid rgb(187, 187, 0);
+    border-radius: 10px;
+    margin: 0 10px; /* Add margin to create space between the columns */
+}
+.column1 {
+    flex: 1;
+    display: flex; /* Toegevoegde eigenschap om de inhoud binnen de kolom te centreren */
+    flex-direction: column; /* Toegevoegde eigenschap om de inhoud binnen de kolom verticaal uit te lijnen */
+    justify-content: center; /* Toegevoegde eigenschap om de inhoud verticaal te centreren */
+    align-items: center; /* Toegevoegde eigenschap om de inhoud horizontaal te centreren */
+}
+
+.column2 {
+    flex: 1;
+    margin-left: 20px;
+    display: flex; /* Toegevoegde eigenschap om de inhoud binnen de kolom te centreren */
+    flex-direction: column; /* Toegevoegde eigenschap om de inhoud binnen de kolom verticaal uit te lijnen */
+}
+

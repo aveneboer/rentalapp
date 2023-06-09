@@ -1,0 +1,77 @@
+.vehicle-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.description {
+    flex: 1;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.includes {
+    flex: 1;
+    margin-right: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vehicle-image {
+    width: 80%;
+    max-width: 400px;
+    height: auto;
+}
+.flex-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+h4 {
+    font-size: 18px;
+    color: rgb(187, 187, 0);
+}
+
+.line:after {
+    content: '';
+    display: block;
+    width: 15%;
+    height: 1px;
+    background-color: rgb(187, 187, 0);
+    left: 13%;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+/* Mediaquery voor smartphones */
+@media (max-width: 600px) {
+    .vehicle-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .description {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .includes {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .image-container {
+        margin-bottom: 20px;
+    }
+
+    .vehicle-image {
+        width: 100%;
+        max-width: 300px;
+    }
+}
