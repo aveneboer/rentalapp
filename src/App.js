@@ -6,13 +6,12 @@ import Bikes from "./pages/Bikes/Bikes";
 import PrivateDriver from "./pages/PrivateDriver/PrivateDriver";
 import Login from "./pages/Login/Login";
 import YourReservations from "./pages/YourReservations/YourReservations";
+import ReservationPage from "./pages/ReservationPage/ReservationPage";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Nav from "./components/Nav/Nav";
 
-
-
-
 const App = () => {
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleLogin = () => {
@@ -32,18 +31,13 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/bikes" element={<Bikes />} />
             <Route path="/private-driver" element={<PrivateDriver />} />
-            <Route
-                path="/login"
-                element={<Login handleLogin={handleLogin} isAuthenticated={isAuthenticated} />}
-            />
+            <Route path="/login" element={<Login handleLogin={handleLogin} isAuthenticated={isAuthenticated} />} />
             {!isAuthenticated ? (
-                <Route
-                    path="/your-reservations"
-                    element={<Navigate to="/login" replace={true} />}
-                />
+                <Route path="/your-reservations" element={<Navigate to="/login" replace={true} />} />
             ) : (
                 <Route path="/your-reservations" element={<YourReservations />} />
             )}
+            <Route path="/reservationPage" element={<ReservationPage />} /> 
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
@@ -52,4 +46,3 @@ const App = () => {
 };
 
 export default App;
-

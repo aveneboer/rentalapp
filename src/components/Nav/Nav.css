@@ -44,3 +44,16 @@ button {
     padding: 0 1em;
     margin-right: 1em;
 }
+@media (max-width: 767px) {
+    .nav-left {
+        font-size: 1rem; /* Aangepaste lettergrootte voor mobiele weergave */
+    }
+
+    nav ul {
+        gap: 1em; /* Aangepaste afstand tussen menu-items voor mobiele weergave */
+    }
+
+    nav ul li a {
+        font-size: 1rem; /* Aangepaste lettergrootte voor mobiele weergave */
+    }
+}

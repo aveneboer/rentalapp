@@ -1,20 +1,29 @@
 .reservation-form {
     background-color: #fff;
     border-radius: 8px;
-    padding: 20px;
+    padding: 60px;
+    text-align: left;
+    margin-top: 30px;
 }
 
 .reservation-form select,
-.reservation-form input[type="date"],
-.reservation-form input[type="time"] {
+.reservation-form input {
     margin-bottom: 10px;
+    margin-left: 20px;
+
 }
 
 .reservation-form label {
     font-size: 18px;
+
 }
 
 .reservation-form button {
     margin-top: 10px;
     font-size: 18px;
+}
+@media (max-width: 767px) {
+    .reservation-form {
+        padding: 30px;
+    }
 }

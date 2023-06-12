@@ -1,37 +1,26 @@
-import React, { useState } from "react";
-import Footer from "../../components/Footer/Footer";
-import ReservationForm from "../../components/ReservationForm/ReservationForm";
+import React from 'react';
+import Footer from '../../components/Footer/Footer';
+import ReservationForm from '../../components/ReservationForm/ReservationForm';
+import './ReservationPage.css';
+import '../../styles/global.css';
 
 const ReservationPage = () => {
-    const [showPage, setShowPage] = useState(false);
-
-    const handleBookNowClick = () => {
-        setShowPage(true);
-    };
-
-    if (!showPage) {
-        return (
-            <div>
-                <button onClick={handleBookNowClick}>Book Now</button>
-            </div>
-        );
-    }
-
     return (
-        <>
-            <div className="main">
-                <header>
-                    <div className="background"></div>
-                    <ReservationForm />
-                </header>
+        <div className="main">
+            <header>
+                <div className="wide-bar">
+                    <div className="content">
+                <ReservationForm className="form"/>
+                    </div>
+                </div>
+            </header>
 
-                <body></body>
+            <body></body>
 
-                <footer className="process-container">
-                    <Footer />
-                </footer>
-            </div>
-        </>
+            <footer className="process-container">
+                <Footer />
+            </footer>
+        </div>
     );
 };
 

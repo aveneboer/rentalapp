@@ -26,6 +26,15 @@ h1, p, a {
     background-image: url('/src/assets/geio-tischler-7hww7t6NLcg-unsplash.jpg');
     background-size: cover;
     background-position: center;
+
+}
+.content {
+    position: absolute; /* Absoluut gepositioneerd binnen de wide-bar */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 50px;
 }
 
 
@@ -34,7 +43,7 @@ h1, p, a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 65%;
     height: 40vh;
     background-color: white;
     display: flex;

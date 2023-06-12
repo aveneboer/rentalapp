@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import './ReservationForm.css'
 
-const CalendarForm = () => {
+const ReservationForm = () => {
     const [service, setService] = useState('');
     const [bikeCount, setBikeCount] = useState(1);
     const [passengerCount, setPassengerCount] = useState(1);
@@ -36,7 +37,7 @@ const CalendarForm = () => {
     };
 
     return (
-        <form>
+        <form className="reservation-form">
             <div>
                 <label htmlFor="service">Select service:</label>
                 <select id="service" value={service} onChange={handleServiceChange}>
@@ -84,10 +85,44 @@ const CalendarForm = () => {
                 <label htmlFor="returnTime">Return time:</label>
                 <input type="time" id="returnTime" value={returnTime} onChange={handleReturnTimeChange} />
             </div>
+            <div>
+                <label htmlFor="firstName">First Name:</label>
+                <input type="text" id="firstName" />
+            </div>
+
+            <div>
+                <label htmlFor="lastName">Last Name:</label>
+                <input type="text" id="lastName" />
+            </div>
+
+            <div>
+                <label htmlFor="address">Address:</label>
+                <input type="text" id="address" />
+            </div>
+
+            <div>
+                <label htmlFor="country">Country:</label>
+                <input type="text" id="country" />
+            </div>
+
+            <div>
+                <label htmlFor="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" />
+            </div>
+
+            <div>
+                <label htmlFor="paymentMethod">Preferred Payment Method:</label>
+                <select id="paymentMethod">
+                    <option value="cash">Cash</option>
+                    <option value="creditCard">Credit Card</option>
+                    <option value="bankCard">Bank Card</option>
+                </select>
+            </div>
+
 
             <button type="submit">Submit</button>
         </form>
     );
 };
 
-export default CalendarForm;
+export default ReservationForm;

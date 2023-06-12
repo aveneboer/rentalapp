@@ -10,10 +10,8 @@ import "../../components/Vehicles/VehicleDetails.css";
 import "../../components/Buttons/ButtonBookNow.css";
 
 
+
 const PrivateDriver = () => {
-    const handleBookNow = () => {
-        // Implementeer hier de logica voor het afhandelen van de "Book Now" actie
-    };
 
     return (
         <>
@@ -54,7 +52,7 @@ const PrivateDriver = () => {
                             "Unlimited mileage"
                         ]}
                     >
-                        <Button text="Book Now" onClick={handleBookNow} />
+                        <Button />
                     </VehicleDetails>
 
                 </div>

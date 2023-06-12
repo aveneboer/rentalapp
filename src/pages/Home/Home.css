@@ -6,15 +6,6 @@
     height: 100vh;
 }
 
-.content {
-    position: absolute; /* Absoluut gepositioneerd binnen de wide-bar */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    padding: 50px;
-}
-
 .content h1 {
     font-size: 36px; /* Pas de gewenste lettergrootte aan */
     color: white; /* Pas de gewenste tekstkleur aan */

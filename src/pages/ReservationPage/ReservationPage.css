@@ -1,0 +1,25 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    max-width: 100%;
+    box-sizing: border-box; /* Neemt padding en randen mee in de berekening van de totale breedte */
+    margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    .wide-bar {
+        padding: 20px;
+        height: 80vh;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .form {
+        padding: 30px;
+    }
+}
