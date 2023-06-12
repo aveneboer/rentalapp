@@ -1,0 +1,20 @@
+.reservation-form {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.reservation-form select,
+.reservation-form input[type="date"],
+.reservation-form input[type="time"] {
+    margin-bottom: 10px;
+}
+
+.reservation-form label {
+    font-size: 18px;
+}
+
+.reservation-form button {
+    margin-top: 10px;
+    font-size: 18px;
+}
