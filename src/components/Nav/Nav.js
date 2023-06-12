@@ -23,13 +23,16 @@ const Nav = ({ isAuthenticated, handleLogout }) => {
                 <li>
                     <NavLink to="/private-driver">Private Driver</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/reservation-form">Reservation Form</NavLink>
+                </li>
                 {isAuthenticated && (
                     <li>
                         <NavLink to="/your-reservations">Your Reservations</NavLink>
                     </li>
                 )}
                 <li>
-                    <NavLink to="/about">About</NavLink>
+                    <NavLink to="/location">Location</NavLink>
                 </li>
                 {!isAuthenticated ? (
                     <li>

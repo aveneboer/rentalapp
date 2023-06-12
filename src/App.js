@@ -1,25 +1,55 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Home from "./pages/Home/Home";
+import Bikes from "./pages/Bikes/Bikes";
+import PrivateDriver from "./pages/PrivateDriver/PrivateDriver";
+import Login from "./pages/Login/Login";
+import YourReservations from "./pages/YourReservations/YourReservations";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import Nav from "./components/Nav/Nav";
 
-function App() {
+
+
+
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <div>
+          <Nav isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/bikes" element={<Bikes />} />
+            <Route path="/private-driver" element={<PrivateDriver />} />
+            <Route
+                path="/login"
+                element={<Login handleLogin={handleLogin} isAuthenticated={isAuthenticated} />}
+            />
+            {!isAuthenticated ? (
+                <Route
+                    path="/your-reservations"
+                    element={<Navigate to="/login" replace={true} />}
+                />
+            ) : (
+                <Route path="/your-reservations" element={<YourReservations />} />
+            )}
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </div>
+      </Router>
   );
-}
+};
 
 export default App;
+
