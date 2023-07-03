@@ -28,16 +28,13 @@ const Nav = ({ isAuthenticated, handleLogout }) => {
                         <NavLink to="/your-reservations">Your Reservations</NavLink>
                     </li>
                 )}
-                <li>
-                    <NavLink to="/location">Location</NavLink>
-                </li>
                 {!isAuthenticated ? (
                     <li>
                         <NavLink to="/login">Login</NavLink>
                     </li>
                 ) : (
                     <li>
-                        <button onClick={handleLogout}>Logout</button>
+                        <button className="button-nav" onClick={handleLogout}>Logout</button>
                     </li>
                 )}
             </ul>

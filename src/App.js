@@ -37,9 +37,10 @@ const App = () => {
             ) : (
                 <Route path="/your-reservations" element={<YourReservations />} />
             )}
-            <Route path="/reservationPage" element={<ReservationPage />} /> 
+            <Route path="/reservationPage" element={<ReservationPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
+
         </div>
       </Router>
   );

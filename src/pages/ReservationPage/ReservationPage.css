@@ -1,23 +1,45 @@
-.form {
+.wide-bar-reservation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-image: url('/src/assets/geio-tischler-7hww7t6NLcg-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 50px;
+    min-height: 300px;
+}
+
+.content1 {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    text-align: center;
+    padding: 50px;
+}
+
+.availability {
+    margin-bottom: 20px;
+}
+
+.reservation-form-container {
+    margin-top: 30px;
+}
+
+.form {
     max-width: 100%;
-    box-sizing: border-box; /* Neemt padding en randen mee in de berekening van de totale breedte */
-    margin: 0 auto;
+    width: 400px;
 }
 
 @media (max-width: 767px) {
-    .wide-bar {
+    .wide-bar-reservation {
         padding: 20px;
-        height: 80vh;
+        height: auto;
     }
 
-    .content {
-        padding: 20px;
-    }
 
     .form {
         padding: 30px;

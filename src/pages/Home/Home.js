@@ -8,7 +8,6 @@ import "../../styles/global.css";
 import Button from "../../components/Buttons/ButtonBookNow";
 
 
-
 const Home = () => {
     const handleBookNow = () => {
         // Implementeer hier de logica voor het afhandelen van de "Book Now" actie
@@ -19,21 +18,20 @@ const Home = () => {
                 <div className="wide-bar">
                     <div className="content">
                         <h1>Bali - Rent your Bike or Driver</h1>
-                        <Button text="Book Now" onClick={handleBookNow} />
+                        <Button text="Book Now" onClick={handleBookNow}/>
                     </div>
                 </div>
             </header>
 
-            <body>
             <div className="bar-container">
                 <p>Since tourists are no longer allowed to drive scooters we offer you the best next thing or maybe even
                     better! Rent your own E-fatbike to discover Bali. You do not only help saving the planet, but it
                     also is a great alternative to discover Bali at your own pace, with minimal effort and without the
-                    disturbing noise of the engine.</p> <br />
+                    disturbing noise of the engine.</p> <br/>
                 <p>Not in the mood to cycle or prefer to cover bigger distances, rent our driver with car, not only do
                     you get the best local tips, but you also travel with great comfort.</p><br/>
                 <h2>Experience the ultimate feeling of freedom!</h2>
-                <Button text="Book Now" onClick={handleBookNow} />
+                <Button text="Book Now" onClick={handleBookNow}/>
             </div>
 
             <div className="process-container">
@@ -92,7 +90,6 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            </body>
 
             <footer className="process-container">
                 <Footer/>
