@@ -10,7 +10,6 @@ import Button from "../../components/Buttons/ButtonBookNow";
 
 const Home = () => {
     const handleBookNow = () => {
-        // Implementeer hier de logica voor het afhandelen van de "Book Now" actie
     };
     return (
         <div className="main">

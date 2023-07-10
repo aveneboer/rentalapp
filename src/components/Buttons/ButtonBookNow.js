@@ -7,7 +7,7 @@ const ButtonBookNow = () => {
     const navigate = useNavigate();
 
     const handleBookNowClick = () => {
-        navigate('/reservationPage'); // Navigate to the ReservationPage when the button is clicked
+        navigate('/reservationPage');
     };
 
     return (

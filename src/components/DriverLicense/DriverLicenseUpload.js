@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const DriverLicenseUpload = () => {
+const DriverLicenseUpload = ({ reservationFormSubmitted }) => {
     const [file, setFile] = useState(null);
+    const [confirmation, setConfirmation] = useState('');
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     };
 
-    const handleUpload = () => {
+    const handleUploadDriverLicense = () => {
         const formData = new FormData();
         formData.append('file', file);
 
@@ -16,9 +17,11 @@ const DriverLicenseUpload = () => {
             .post('http://localhost:8080/driverLicense/upload', formData)
             .then((response) => {
                 console.log(response.data);
+                setConfirmation('Driver license uploaded successfully.');
             })
             .catch((error) => {
                 console.error('Error uploading driver license:', error);
+                setConfirmation('Error occurred while uploading driver license.');
             });
     };
 
@@ -26,9 +29,14 @@ const DriverLicenseUpload = () => {
         <div>
             <label htmlFor="driverLicense">Upload Driver License:</label>
             <input type="file" id="driverLicense" onChange={handleFileChange} />
-            <button type="button" onClick={handleUpload} disabled={!file}>
+            <button
+                type="button"
+                onClick={handleUploadDriverLicense}
+                disabled={!file || !reservationFormSubmitted}
+            >
                 Upload
             </button>
+            {confirmation && <p>{confirmation}</p>}
         </div>
     );
 };

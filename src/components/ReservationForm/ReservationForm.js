@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './ReservationForm.css';
 import axios from 'axios';
-import '../DriverLicense/DriverLicenseUpload';
 import DriverLicenseUpload from "../DriverLicense/DriverLicenseUpload";
+
 
 const ReservationForm = ({ isVisible }) => {
     const [confirmation, setConfirmation] = useState('');
+    const [reservationFormSubmitted, setReservationFormSubmitted] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [service, setService] = useState('');
@@ -15,6 +16,7 @@ const ReservationForm = ({ isVisible }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
+    const [documentUploaded, setDocumentUploaded] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -33,19 +35,21 @@ const ReservationForm = ({ isVisible }) => {
             bikeQuantity
         };
 
-
         axios
             .post('http://localhost:8080/reservations/create_reservation', reservationData)
             .then((response) => {
-
                 console.log(response.data);
                 setConfirmation('Your reservation was successful.');
+                setReservationFormSubmitted(true);
             })
             .catch((error) => {
-
                 console.error('Fout bij het maken van de reservering:', error);
                 setConfirmation('Error occurred while creating reservation.');
             });
+    };
+
+    const handleDocumentUpload = (isUploaded) => {
+        setDocumentUploaded(isUploaded);
     };
 
     return (
@@ -114,10 +118,14 @@ const ReservationForm = ({ isVisible }) => {
                 <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
 
-            <button type="submit">Submit</button>
-            {confirmation && <p>{confirmation}</p>}
-            <DriverLicenseUpload />
+            {documentUploaded && <button type="submit">Submit</button>}
 
+            {!documentUploaded && (
+                <DriverLicenseUpload handleDocumentUpload={handleDocumentUpload} />
+            )}
+
+            {reservationFormSubmitted && <DriverLicenseUpload reservationFormSubmitted={reservationFormSubmitted} />}
+            {confirmation && <p>{confirmation}</p>}
         </form>
     );
 };
