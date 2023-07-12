@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home/Home";
 import Bikes from "./pages/Bikes/Bikes";
 import PrivateDriver from "./pages/PrivateDriver/PrivateDriver";
@@ -9,10 +9,9 @@ import YourReservations from "./pages/YourReservations/YourReservations";
 import ReservationPage from "./pages/ReservationPage/ReservationPage";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Nav from "./components/Nav/Nav";
-import AuthProvider, { AuthContext } from "./components/AuthProvider/AuthProvider";
+import AuthProvider from "./components/AuthProvider/AuthProvider";
 
 const App = () => {
-  const { isAuth } = useContext(AuthContext);
 
   return (
       <AuthProvider>
@@ -25,11 +24,7 @@ const App = () => {
               <Route path="/bikes" element={<Bikes />} />
               <Route path="/private-driver" element={<PrivateDriver />} />
               <Route path="/login" element={<Login />} />
-              {isAuth ? (
-                  <Route path="/your-reservations" element={<YourReservations />} />
-              ) : (
-                  <Navigate to="/" />
-              )}
+              <Route path="/your-reservations" element={<YourReservations />} />
               <Route path="/reservationPage" element={<ReservationPage />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>

@@ -15,18 +15,30 @@ const Register = ({ onComplete }) => {
             enabled: true,
         };
 
-    axios
+        axios
             .post('http://localhost:8080/users/create_user', userData)
             .then((response) => {
                 setConfirmation('Your account has been created.');
-                onComplete(userData);
+
+                axios
+                    .put('http://localhost:8080/customers/link-to-user', null,{
+                        params: {
+                            username: userData.username,
+                            email: userData.email,
+                        },
+                    })
+                    .then(() => {
+                        onComplete(userData);
+                    })
+                    .catch((error) => {
+                        console.error('Error occurred while linking user to customer:', error);
+                    });
             })
             .catch((error) => {
                 console.error('Error occurred while creating your account:', error);
                 setConfirmation('Error occurred while creating your account.');
             });
     };
-
 
     return (
         <div>
