@@ -10,7 +10,7 @@ import "../../components/Vehicles/VehicleDetails.css";
 
 const Bikes = () => {
     const handleBookNow = () => {
-        // Implementeer hier de logica voor het afhandelen van de "Book Now" actie
+
     };
     return (
         <div className="main">
@@ -43,14 +43,13 @@ const Bikes = () => {
                     </div>
                 </div>
             </header>
-            <body>
             <div className="column" style={{margin: '20px'}}>
                 <VehicleDetails
                     image={BikeKnaap}
                     alt="Electric Bike"
                     title={"Knaap e-bike"}
-                    dayPrice={"70K"}
-                    weekPrice={"400K"}
+                    dayPrice={"120K"}
+                    weekPrice={"600K"}
                     includes={[
                         "Rain coat",
                         "Road assistance",
@@ -60,9 +59,6 @@ const Bikes = () => {
                     <Button text="Book Now" onClick={handleBookNow} />
                 </VehicleDetails>
             </div>
-
-            </body>
-
 
             <footer className="process-container">
                 <Footer/>

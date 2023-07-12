@@ -7,8 +7,6 @@
     background-position: center;
 }
 
-
-
 .white-bar h4 {
     margin: 0;
     color: rgb(187, 187, 0);
@@ -32,20 +30,20 @@
 
 @media (max-width: 768px) {
     .white-bar h4 {
-        font-size: 18px; /* Aangepaste lettergrootte voor kleinere schermen */
+        font-size: 18px;
 
     }
     .white-bar {
         flex-wrap: wrap;
-        align-items: flex-start; /* Aangepaste eigenschap om de inhoud vanaf de bovenkant te uit te lijnen */
+        align-items: flex-start;
         overflow: auto;
     }
     column1 {
-        margin-bottom: 20px; /* Toegevoegde eigenschap om ruimte te maken tussen de kolommen op kleinere schermen */
+        margin-bottom: 20px;
     }
 
     .white-bar p {
-        font-size: 12px; /* Aangepaste lettergrootte voor kleinere schermen */
+        font-size: 12px;
     }
 
 }

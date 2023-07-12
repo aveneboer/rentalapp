@@ -1,46 +1,65 @@
 import React, { useState } from 'react';
-import './ReservationForm.css'
+import './ReservationForm.css';
+import axios from 'axios';
+import DriverLicenseUpload from "../DriverLicense/DriverLicenseUpload";
 
-const ReservationForm = () => {
+
+const ReservationForm = ({ isVisible }) => {
+    const [confirmation, setConfirmation] = useState('');
+    const [reservationFormSubmitted, setReservationFormSubmitted] = useState(false);
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [service, setService] = useState('');
-    const [bikeCount, setBikeCount] = useState(1);
-    const [passengerCount, setPassengerCount] = useState(1);
-    const [selectedDates, setSelectedDates] = useState([]);
-    const [pickupTime, setPickupTime] = useState('');
-    const [returnTime, setReturnTime] = useState('');
+    const [bikeQuantity, setBikeQuantity] = useState(1);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [email, setEmail] = useState('');
+    const [address, setAddress] = useState('');
+    const [documentUploaded, setDocumentUploaded] = useState(false);
 
-    const handleServiceChange = (event) => {
-        setService(event.target.value);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const reservationData = {
+            startDate,
+            endDate,
+            type: service,
+            customer: {
+                firstName,
+                lastName,
+                phoneNo: phoneNumber,
+                email,
+                address
+            },
+            bikeQuantity
+        };
+
+        axios
+            .post('http://localhost:8080/reservations/create_reservation', reservationData)
+            .then((response) => {
+                console.log(response.data);
+                setConfirmation('Your reservation and driver license upload was successful.');
+                setReservationFormSubmitted(true);
+            })
+            .catch((error) => {
+                console.error('There was an error during the reservation process', error);
+                setConfirmation('Error occurred while creating reservation.');
+            });
     };
 
-    const handleBikeCountChange = (event) => {
-        setBikeCount(parseInt(event.target.value));
-    };
 
-    const handlePassengerCountChange = (event) => {
-        setPassengerCount(parseInt(event.target.value));
-    };
-
-    const handleDateChange = (event) => {
-        const selected = Array.from(event.target.options)
-            .filter((option) => option.selected)
-            .map((option) => option.value);
-        setSelectedDates(selected);
-    };
-
-    const handlePickupTimeChange = (event) => {
-        setPickupTime(event.target.value);
-    };
-
-    const handleReturnTimeChange = (event) => {
-        setReturnTime(event.target.value);
+    const handleDocumentUpload = (isUploaded) => {
+        setDocumentUploaded(isUploaded);
     };
 
     return (
-        <form className="reservation-form">
+        <form className={`reservation-form ${isVisible ? 'visible' : 'hidden'}`} onSubmit={handleSubmit}>
             <div>
+                <h3> Make your reservation: </h3>
+                <br/>
                 <label htmlFor="service">Select service:</label>
-                <select id="service" value={service} onChange={handleServiceChange}>
+                <select id="service" value={service} onChange={(e) => setService(e.target.value)}>
                     <option value="">Choose an option</option>
                     <option value="bike">Bike</option>
                     <option value="car">Private driver</option>
@@ -50,77 +69,70 @@ const ReservationForm = () => {
             {service === 'bike' && (
                 <div>
                     <label htmlFor="bikeCount">Select how many bikes:</label>
-                    <select id="bikeCount" value={bikeCount} onChange={handleBikeCountChange}>
+                    <select id="bikeCount" value={bikeQuantity} onChange={(e) => setBikeQuantity(parseInt(e.target.value))}>
                         {[1, 2, 3, 4, 5].map((count) => (
-                            <option key={count} value={count}>{count}</option>
+                            <option key={count} value={count}>
+                                {count}
+                            </option>
                         ))}
-                        <option value="contact">Contact us for more</option>
-                    </select>
-                </div>
-            )}
-
-            {service === 'car' && (
-                <div>
-                    <label htmlFor="passengerCount">Select number of passengers:</label>
-                    <select id="passengerCount" value={passengerCount} onChange={handlePassengerCountChange}>
-                        {[1, 2, 3, 4].map((count) => (
-                            <option key={count} value={count}>{count}</option>
-                        ))}
-                        <option value="contact">Contact us for more</option>
                     </select>
                 </div>
             )}
 
             <div>
-                <label htmlFor="dates">Select dates:</label>
-                <input type="date" id="dates" value={selectedDates} onChange={handleDateChange} multiple />
+                <label htmlFor="startDate">Start Date:</label>
+                <input type="date" id="startDate" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
             </div>
 
             <div>
-                <label htmlFor="pickupTime">Pick up time:</label>
-                <input type="time" id="pickupTime" value={pickupTime} onChange={handlePickupTimeChange} />
+                <label htmlFor="endDate">End Date:</label>
+                <input type="date" id="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
             </div>
 
-            <div>
-                <label htmlFor="returnTime">Return time:</label>
-                <input type="time" id="returnTime" value={returnTime} onChange={handleReturnTimeChange} />
-            </div>
             <div>
                 <label htmlFor="firstName">First Name:</label>
-                <input type="text" id="firstName" />
+                <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
             </div>
 
             <div>
                 <label htmlFor="lastName">Last Name:</label>
-                <input type="text" id="lastName" />
-            </div>
-
-            <div>
-                <label htmlFor="address">Address:</label>
-                <input type="text" id="address" />
-            </div>
-
-            <div>
-                <label htmlFor="country">Country:</label>
-                <input type="text" id="country" />
+                <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
             </div>
 
             <div>
                 <label htmlFor="phoneNumber">Phone Number:</label>
-                <input type="tel" id="phoneNumber" />
+                <input
+                    type="tel"
+                    id="phoneNumber"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                />
             </div>
-
+            <label htmlFor="email">Email:</label>
+            <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
             <div>
-                <label htmlFor="paymentMethod">Preferred Payment Method:</label>
-                <select id="paymentMethod">
-                    <option value="cash">Cash</option>
-                    <option value="creditCard">Credit Card</option>
-                    <option value="bankCard">Bank Card</option>
-                </select>
+                <label htmlFor="address">Address:</label>
+                <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
 
+            {documentUploaded && <button type="submit">Submit</button>}
 
-            <button type="submit">Submit</button>
+            {!documentUploaded && (
+                <DriverLicenseUpload handleDocumentUpload={handleDocumentUpload} />
+            )}
+
+            {reservationFormSubmitted && (
+                <DriverLicenseUpload handleDocumentUpload={handleDocumentUpload} />
+            )}
+
+            {confirmation && <p>{confirmation}</p>}
+
+
         </form>
     );
 };

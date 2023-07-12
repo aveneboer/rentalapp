@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { NavLink } from 'react-router-dom';
-import './Nav.css'
+import './Nav.css';
+import {AuthContext} from "../AuthProvider/AuthProvider";
 
-const Nav = ({ isAuthenticated, handleLogout }) => {
-    const slogan = "Discover Bali the way you like it";
+const Nav = () => {
+    const { isAuth, logout } = useContext(AuthContext);
+    const slogan = 'Discover Bali the way you like it';
 
     return (
         <nav>
             <div className="nav-left">
                 <span className="logo">Rental Services</span>
-                <span className="slogan">{ slogan }</span>
+                <span className="slogan">{slogan}</span>
             </div>
             <ul>
                 <li>
@@ -23,21 +25,18 @@ const Nav = ({ isAuthenticated, handleLogout }) => {
                 <li>
                     <NavLink to="/private-driver">Private Driver</NavLink>
                 </li>
-                {isAuthenticated && (
-                    <li>
-                        <NavLink to="/your-reservations">Your Reservations</NavLink>
-                    </li>
-                )}
                 <li>
-                    <NavLink to="/location">Location</NavLink>
+                    <NavLink to="/your-reservations">Your Reservations</NavLink>
                 </li>
-                {!isAuthenticated ? (
+                {isAuth ? (
                     <li>
-                        <NavLink to="/login">Login</NavLink>
+                        <button className="button-nav" onClick={logout}>
+                            Logout
+                        </button>
                     </li>
                 ) : (
                     <li>
-                        <button onClick={handleLogout}>Logout</button>
+                        <NavLink to="/login">Login</NavLink>
                     </li>
                 )}
             </ul>
@@ -46,4 +45,3 @@ const Nav = ({ isAuthenticated, handleLogout }) => {
 };
 
 export default Nav;
-

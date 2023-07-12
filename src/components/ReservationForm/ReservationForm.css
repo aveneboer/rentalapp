@@ -12,6 +12,13 @@
     margin-left: 20px;
 
 }
+.reservation-form.visible {
+    display: block;
+}
+
+.reservation-form.hidden {
+    display: none;
+}
 
 .reservation-form label {
     font-size: 18px;

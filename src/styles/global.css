@@ -17,10 +17,9 @@ h1, p, a {
     margin: 0 1rem;
 }
 
-/* Layouts */
-/* home style with background image */
+
 .wide-bar {
-    position: relative; /* Nodig voor de absolute positionering van de content */
+    position: relative;
     width: 100%;
     height: 60vh;
     background-image: url('/src/assets/geio-tischler-7hww7t6NLcg-unsplash.jpg');
@@ -29,7 +28,7 @@ h1, p, a {
 
 }
 .content {
-    position: absolute; /* Absoluut gepositioneerd binnen de wide-bar */
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -49,7 +48,7 @@ h1, p, a {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Toegevoegde eigenschap om kolommen te laten meeschalen */
+    flex-wrap: wrap;
 }
 
 .column h1 {
@@ -84,20 +83,21 @@ h1, p, a {
     padding: 10px;
     border: 2px solid rgb(187, 187, 0);
     border-radius: 10px;
-    margin: 0 10px; /* Add margin to create space between the columns */
+    margin: 0 10px;
 }
 .column1 {
     flex: 1;
-    display: flex; /* Toegevoegde eigenschap om de inhoud binnen de kolom te centreren */
-    flex-direction: column; /* Toegevoegde eigenschap om de inhoud binnen de kolom verticaal uit te lijnen */
-    justify-content: center; /* Toegevoegde eigenschap om de inhoud verticaal te centreren */
-    align-items: center; /* Toegevoegde eigenschap om de inhoud horizontaal te centreren */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .column2 {
     flex: 1;
     margin-left: 20px;
-    display: flex; /* Toegevoegde eigenschap om de inhoud binnen de kolom te centreren */
-    flex-direction: column; /* Toegevoegde eigenschap om de inhoud binnen de kolom verticaal uit te lijnen */
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
 }
 

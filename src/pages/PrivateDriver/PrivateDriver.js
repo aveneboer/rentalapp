@@ -38,12 +38,12 @@ const PrivateDriver = () => {
                         </div>
                     </div>
                 </header>
-                <body>
+
                 <div className="column" style={{margin: '20px'}}>
                     <VehicleDetails
                         title={"Private driver"}
-                        dayPrice={"500K"}
-                        weekPrice={"2000K"}
+                        dayPrice={"800K"}
+                        weekPrice={"4000K"}
                         image={CarToyota}
                         alt="Car Toyota"
                         includes={[
@@ -56,8 +56,6 @@ const PrivateDriver = () => {
                     </VehicleDetails>
 
                 </div>
-
-                </body>
 
 
                 <footer className="process-container">
