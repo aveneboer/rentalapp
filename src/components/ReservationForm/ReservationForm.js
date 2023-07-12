@@ -39,14 +39,15 @@ const ReservationForm = ({ isVisible }) => {
             .post('http://localhost:8080/reservations/create_reservation', reservationData)
             .then((response) => {
                 console.log(response.data);
-                setConfirmation('Your reservation was successful.');
+                setConfirmation('Your reservation and driver license upload was successful.');
                 setReservationFormSubmitted(true);
             })
             .catch((error) => {
-                console.error('Fout bij het maken van de reservering:', error);
+                console.error('There was an error during the reservation process', error);
                 setConfirmation('Error occurred while creating reservation.');
             });
     };
+
 
     const handleDocumentUpload = (isUploaded) => {
         setDocumentUploaded(isUploaded);
@@ -107,12 +108,13 @@ const ReservationForm = ({ isVisible }) => {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                 />
             </div>
-
-            <div>
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
-
+            <label htmlFor="email">Email:</label>
+            <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
             <div>
                 <label htmlFor="address">Address:</label>
                 <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
@@ -124,8 +126,13 @@ const ReservationForm = ({ isVisible }) => {
                 <DriverLicenseUpload handleDocumentUpload={handleDocumentUpload} />
             )}
 
-            {reservationFormSubmitted && <DriverLicenseUpload reservationFormSubmitted={reservationFormSubmitted} />}
+            {reservationFormSubmitted && (
+                <DriverLicenseUpload handleDocumentUpload={handleDocumentUpload} />
+            )}
+
             {confirmation && <p>{confirmation}</p>}
+
+
         </form>
     );
 };

@@ -1,31 +1,62 @@
-import React, { useState, createContext } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
-export const AuthContext = createContext();
+export const AuthContext = createContext({});
 
-const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState(null);
-    const [username, setUsername] = useState(null);
-    const [email, setEmail] = useState(null);
+function AuthContextProvider({ children }) {
+    const [isAuth, setIsAuth] = useState({
+        isAuth: false,
+        token: null,
+        status: 'pending',
+    });
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
 
-    const handleLogin = (token, username, email) => {
-        setToken(token);
-        setUsername(username);
-        setEmail(email);
+        if (token) {
+            setIsAuth({
+                isAuth: true,
+                token: token,
+                status: 'done',
+            });
+        } else {
+            setIsAuth({
+                isAuth: false,
+                token: null,
+                status: 'done',
+            });
+        }
+    }, []);
+
+    function login(token) {
+        localStorage.setItem('token', token);
+        setIsAuth({
+            isAuth: true,
+            token: token,
+            status: 'done',
+        });
+    }
+
+    function logout() {
+        localStorage.removeItem('token');
+        setIsAuth({
+            isAuth: false,
+            token: null,
+            status: 'done',
+        });
+    }
+
+    const contextData = {
+        isAuth: isAuth.isAuth,
+        token: isAuth.token,
+        login: login,
+        logout: logout,
     };
-
-    const handleLogout = () => {
-        setToken(null);
-        setUsername(null);
-        setEmail(null);
-    };
-
 
     return (
-        <AuthContext.Provider value={{ token, username, email, handleLogin, handleLogout }}>
-            {children}
+        <AuthContext.Provider value={contextData}>
+            {isAuth.status === 'done' ? children : <p>Loading...</p>}
         </AuthContext.Provider>
     );
-};
+}
 
-export default AuthProvider;
+export default AuthContextProvider;

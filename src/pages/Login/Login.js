@@ -1,105 +1,70 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../components/AuthProvider/AuthProvider';
 import axios from 'axios';
-import './Login.css';
 
-const Login = ({ handleLogin }) => {
+function SignIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [confirmation, setConfirmation] = useState('');
-    const [isRegisterMode, setIsRegisterMode] = useState(false);
+    const [error, toggleError] = useState(false);
+    const { login } = useContext(AuthContext);
 
-    const handleLoginSubmit = () => {
-        const userData = {
-            username,
-            password
-        };
+    async function handleSubmit(e) {
+        e.preventDefault();
+        toggleError(false);
 
-        axios
-            .post('http://localhost:8080/authenticate', userData)
-            .then((response) => {
-                console.log(response.data);
-                setConfirmation('Login successful.');
-                handleLogin();
-            })
-            .catch((error) => {
-                console.error('Username or password incorrect', error);
-                setConfirmation('Error occurred during login.');
+        try {
+            const result = await axios.post('http://localhost:8080/authenticate', {
+                username: username,
+                password: password,
             });
-    };
+            console.log(result.data.jwt);
 
-    const handleRegisterSubmit = () => {
-        const userData = {
-            username,
-            password,
-            email
-        };
+            login(result.data.jwt);
 
-        axios
-            .post('http://localhost:8080/users', userData)
-            .then((response) => {
-                console.log(response.data);
-                setConfirmation('Your account has been created.');
-                handleLogin();
-            })
-            .catch((error) => {
-                console.error('Username or password not allowed or incorrect', error);
-                setConfirmation('Error occurred while creating your account.');
-            });
-    };
-
-    const handleToggleMode = () => {
-        setIsRegisterMode(!isRegisterMode);
-        setUsername('');
-        setPassword('');
-        setEmail('');
-        setConfirmation('');
-    };
+        } catch(e) {
+            console.error(e);
+            toggleError(true);
+        }
+    }
 
     return (
-        <div className="login-container">
-            <h1 className="login-title">{isRegisterMode ? 'Register' : 'Login'}</h1>
-            <p className="login-description">
-                {isRegisterMode ? 'Create your account to get access to your reservation.' : 'Enter your credentials to login.'}
-            </p>
-            {isRegisterMode && (
-                <input
-                    type="text"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="login-input"
-                />
-            )}
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="login-input"
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="login-input"
-            />
-            {isRegisterMode ? (
-                <button onClick={handleRegisterSubmit} className="login-button">
-                    Register
-                </button>
-            ) : (
-                <button onClick={handleLoginSubmit} className="login-button">
-                    Login
-                </button>
-            )}
-            {confirmation && <p className="login-confirmation">{confirmation}</p>}
-            <button onClick={handleToggleMode} className="login-toggle-button">
-                {isRegisterMode ? 'Switch to Login' : 'Switch to Register'}
-            </button>
-        </div>
-    );
-};
+        <>
+            <h1>Please login to view your reservation details</h1>
 
-export default Login;
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">
+                    Username:
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </label>
+
+                <label htmlFor="password-field">
+                    Wachtwoord:
+                    <input
+                        type="password"
+                        id="password-field"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </label>
+                {error && <p className="error">The combination username and password is incorrect</p>}
+
+                <button
+                    type="submit"
+                    className="form-button"
+                >
+                    Log in
+                </button>
+            </form>
+
+        </>
+    );
+}
+
+export default SignIn;

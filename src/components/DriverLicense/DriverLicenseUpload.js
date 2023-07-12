@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const DriverLicenseUpload = ({ reservationFormSubmitted }) => {
+const DriverLicenseUpload = ({ handleDocumentUpload }) => {
     const [file, setFile] = useState(null);
     const [confirmation, setConfirmation] = useState('');
 
@@ -18,10 +18,12 @@ const DriverLicenseUpload = ({ reservationFormSubmitted }) => {
             .then((response) => {
                 console.log(response.data);
                 setConfirmation('Driver license uploaded successfully.');
+                handleDocumentUpload(true);
             })
             .catch((error) => {
                 console.error('Error uploading driver license:', error);
                 setConfirmation('Error occurred while uploading driver license.');
+                handleDocumentUpload(false);
             });
     };
 
@@ -32,7 +34,7 @@ const DriverLicenseUpload = ({ reservationFormSubmitted }) => {
             <button
                 type="button"
                 onClick={handleUploadDriverLicense}
-                disabled={!file || !reservationFormSubmitted}
+                disabled={!file}
             >
                 Upload
             </button>
@@ -42,3 +44,4 @@ const DriverLicenseUpload = ({ reservationFormSubmitted }) => {
 };
 
 export default DriverLicenseUpload;
+

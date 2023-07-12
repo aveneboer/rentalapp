@@ -4,9 +4,11 @@ import ReservationForm from '../../components/ReservationForm/ReservationForm';
 import Availability from '../../components/Availability/Availability';
 import './ReservationPage.css';
 import '../../styles/global.css';
+import Register from "../../components/Register/Registration";
 
 const ReservationPage = () => {
     const [isAvailabilityChecked, setIsAvailabilityChecked] = useState(false);
+
 
     const handleAvailabilityChecked = (availabilityStatus) => {
         if (
@@ -18,6 +20,10 @@ const ReservationPage = () => {
             setIsAvailabilityChecked(false);
         }
     };
+    const handleRegistrationComplete = (userData) => {
+        console.log("User registration completed:", userData);
+    };
+
 
     return (
         <div className="main">
@@ -29,9 +35,12 @@ const ReservationPage = () => {
                         </div>
                         {isAvailabilityChecked && (
                             <div className="reservation-form-container">
-                                <ReservationForm isVisible={isAvailabilityChecked} className="form" />
+                                <ReservationForm isVisible={isAvailabilityChecked} />
                             </div>
                         )}
+                        <div>
+                        <Register onComplete={handleRegistrationComplete} />
+                        </div>
                     </div>
                 </div>
             </header>
@@ -44,4 +53,3 @@ const ReservationPage = () => {
 };
 
 export default ReservationPage;
-
