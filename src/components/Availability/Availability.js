@@ -25,7 +25,7 @@ const Availability = ({ onAvailabilityChecked }) => {
                 onAvailabilityChecked(response.data);
             })
             .catch((error) => {
-                console.error('Fout bij het ophalen van fietsbeschikbaarheid:', error);
+                console.error('Error whilst retrieving bike availability', error);
             });
     };
 
@@ -42,14 +42,14 @@ const Availability = ({ onAvailabilityChecked }) => {
                 onAvailabilityChecked(response.data);
             })
             .catch((error) => {
-                console.error('Fout bij het ophalen van autobeschikbaarheid:', error);
+                console.error('Error whilst retrieving car availability:', error);
             });
     };
 
     return (
         <div className="availability">
             <h1>Check Availability</h1>
-            <div className="format">
+            <div>
                 <DatePicker classname="custom-datepicker"
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}

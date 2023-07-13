@@ -7,17 +7,16 @@
 }
 
 .content h1 {
-    font-size: 36px; /* Pas de gewenste lettergrootte aan */
-    color: white; /* Pas de gewenste tekstkleur aan */
-    margin-bottom: 20px; /* Voeg ruimte toe onder de tekst */
+    font-size: 36px;
+    color: white;
+    margin-bottom: 20px;
 }
 
 .bar-container {
     background-color: #ffffff;
     padding: 20px;
     text-align: center;
-    width: 66.67%; /* 2/3 van de breedte */
-    /* Horizontaal centreren */
+    width: 66.67%;
     margin: 20px auto 0;
 }
 

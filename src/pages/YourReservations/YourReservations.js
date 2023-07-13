@@ -28,7 +28,7 @@ const YourReservations = () => {
             })
             .catch((error) => {
                 console.error('Error occurred while fetching customer:', error);
-                setError('Failed to fetch customer.');
+                setError('Failed to fetch customer, please contact us.');
                 setLoading(false);
             });
 
@@ -42,10 +42,10 @@ const YourReservations = () => {
                     <div className="white-bar">
                         {customer ? (
                             <>
-                                <h2 className="reservation-heading">
+                                <h3 className="reservation-heading">
                                     {`Reservations for ${customer.firstName} ${customer.lastName}`}
-                                </h2>
-                                <div className="reservation-details">
+                                </h3>
+                                <div className="reservation-details column2">
                                     <h3>Customer Details:</h3>
                                     <div className="customer-info">
                                         <p>First Name: {customer.firstName}</p>
@@ -78,8 +78,8 @@ const YourReservations = () => {
                                 </div>
                             </>
                         ) : (
-                            <>
-                                <h2>Your Reservations</h2>
+                            <> <div className="column1">
+                                <h3>Your Reservations</h3>
                                 <form onSubmit={handleSubmit}>
                                     <input
                                         type="text"
@@ -94,6 +94,7 @@ const YourReservations = () => {
                                 ) : error ? (
                                     <p>{error}</p>
                                 ) : null}
+                            </div>
                             </>
                         )}
                     </div>

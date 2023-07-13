@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../components/AuthProvider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Footer from "../../components/Footer/Footer";
 
 function SignIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, toggleError] = useState(false);
     const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -17,9 +21,8 @@ function SignIn() {
                 username: username,
                 password: password,
             });
-            console.log(result.data.jwt);
-
             login(result.data.jwt);
+            navigate('/your-reservations');
 
         } catch(e) {
             console.error(e);
@@ -29,7 +32,11 @@ function SignIn() {
 
     return (
         <>
-            <h1>Please login to view your reservation details</h1>
+            <div className="main">
+                <header>
+                    <div className="background">
+                        <div className="white-bar">
+            <h3>Please login to view your reservation details</h3>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">
@@ -44,7 +51,7 @@ function SignIn() {
                 </label>
 
                 <label htmlFor="password-field">
-                    Wachtwoord:
+                    Password:
                     <input
                         type="password"
                         id="password-field"
@@ -62,6 +69,14 @@ function SignIn() {
                     Log in
                 </button>
             </form>
+                        </div>
+                    </div>
+                </header>
+
+                <footer className="process-container">
+                    <Footer />
+                </footer>
+            </div>
 
         </>
     );
