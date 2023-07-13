@@ -1,0 +1,12 @@
+.register {
+    color: white;
+}
+
+.error {
+    color: darkred;
+    font-weight: bold;
+}
+.confirmation {
+    color: white;
+}
+

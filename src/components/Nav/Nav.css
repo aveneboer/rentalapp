@@ -46,14 +46,14 @@ nav ul li a {
 }
 @media (max-width: 767px) {
     .nav-left {
-        font-size: 1rem; /* Aangepaste lettergrootte voor mobiele weergave */
+        font-size: 1rem;
     }
 
     nav ul {
-        gap: 1em; /* Aangepaste afstand tussen menu-items voor mobiele weergave */
+        gap: 1em;
     }
 
     nav ul li a {
-        font-size: 1rem; /* Aangepaste lettergrootte voor mobiele weergave */
+        font-size: 1rem;
     }
 }

@@ -4,7 +4,6 @@ import Button from "../Buttons/ButtonBookNow";
 import "../../components/Buttons/ButtonBookNow.css"
 
 const handleBookNow = () => {
-    // Implementeer hier de logica voor het afhandelen van de "Book Now" actie
 };
 
 const VehicleDetails = ({image, alt, includes, title, dayPrice, weekPrice}) => {

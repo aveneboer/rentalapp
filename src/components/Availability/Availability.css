@@ -4,7 +4,10 @@
     align-items: center;
     padding: 50px;
     width: 100%;
+    color: rgb(187, 187, 0);
+    font-weight: bold;
 }
+
 
 .availability > * {
     margin-bottom: 20px;
@@ -20,4 +23,6 @@
 
 .button-availability:hover {
     opacity: 0.8;
+
+
 }

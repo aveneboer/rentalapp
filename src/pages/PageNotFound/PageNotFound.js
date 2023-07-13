@@ -25,7 +25,7 @@ const PageNotFound = () => {
         <>
             <h1>PageNotFound</h1>
             <p>
-                Dit is de PageNotFound pagina en stuurt je automatisch terug naar home in{' '}
+                This page has not been found and you will be redirected in {' '}
                 <strong>{counter} sec.</strong>
             </p>
             <hr />
