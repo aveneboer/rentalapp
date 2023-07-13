@@ -18,6 +18,7 @@
 .reservation-list li {
     margin-bottom: 1rem;
 }
-.reservation-heading {
 
+.reservation-details p {
+    margin-bottom: -5px;
 }

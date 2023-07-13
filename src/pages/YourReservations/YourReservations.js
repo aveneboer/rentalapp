@@ -42,8 +42,8 @@ const YourReservations = () => {
                     <div className="white-bar">
                         {customer ? (
                             <>
-                                <h3 className="reservation-heading">
-                                    {`Reservations for ${customer.firstName} ${customer.lastName}`}
+                                <h3>
+                                    {`Reservations for: ${customer.firstName} ${customer.lastName}`}
                                 </h3>
                                 <div className="reservation-details column2">
                                     <h3>Customer Details:</h3>

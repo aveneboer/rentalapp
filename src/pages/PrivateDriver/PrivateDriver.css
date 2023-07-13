@@ -1,6 +1,6 @@
 .image-box {
-    width: 200px; /* Pas aan aan de gewenste grootte */
-    height: 200px; /* Pas aan aan de gewenste grootte */
+    width: 200px;
+    height: 200px;
     overflow: hidden;
     border-radius: 50%;
 }
