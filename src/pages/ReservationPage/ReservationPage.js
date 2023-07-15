@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Footer from '../../components/Footer/Footer';
 import ReservationForm from '../../components/ReservationForm/ReservationForm';
 import Availability from '../../components/Availability/Availability';
@@ -31,22 +31,20 @@ const ReservationPage = () => {
                 <div className="wide-bar-reservation">
                     <div className="content1">
                         <div className="availability">
-                            <Availability onAvailabilityChecked={handleAvailabilityChecked} />
+                            <Availability onAvailabilityChecked={handleAvailabilityChecked}/>
                         </div>
                         {isAvailabilityChecked && (
                             <div className="reservation-form-container">
-                                <ReservationForm isVisible={isAvailabilityChecked} />
+                                <ReservationForm isVisible={isAvailabilityChecked}/>
+                                <Register onComplete={handleRegistrationComplete}/>
                             </div>
                         )}
-                        <div>
-                        <Register onComplete={handleRegistrationComplete} />
-                        </div>
                     </div>
                 </div>
             </header>
 
             <footer className="process-container">
-                <Footer />
+                <Footer/>
             </footer>
         </div>
     );
