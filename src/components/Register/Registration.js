@@ -45,6 +45,11 @@ const Register = ({onComplete}) => {
         let isValid = true;
         setError('');
 
+        if (username.trim() === '' || password.trim() === '' || email.trim() === '') {
+            setError('Please fill in all fields.');
+            isValid = false;
+        }
+
         if (password.length < 8) {
             setError('Password must be at least 8 characters.');
             isValid = false;

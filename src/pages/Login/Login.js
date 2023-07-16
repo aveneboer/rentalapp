@@ -1,14 +1,15 @@
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../components/AuthProvider/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import React, {useContext, useState} from 'react';
+import {AuthContext} from '../../components/AuthProvider/AuthProvider';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Footer from "../../components/Footer/Footer";
+import './Login.css';
 
 function SignIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, toggleError] = useState(false);
-    const { login } = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
     const navigate = useNavigate();
 
 
@@ -24,7 +25,7 @@ function SignIn() {
             login(result.data.jwt);
             navigate('/your-reservations');
 
-        } catch(e) {
+        } catch (e) {
             console.error(e);
             toggleError(true);
         }
@@ -36,45 +37,48 @@ function SignIn() {
                 <header>
                     <div className="background">
                         <div className="white-bar">
-            <h3>Please login to view your reservation details</h3>
+                            <div className="login">
+                                <h3>Please login to view your reservation details:</h3>
 
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">
-                    Username:
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </label>
+                                <form onSubmit={handleSubmit}>
+                                    <label htmlFor="username">
+                                        Username:
+                                        <input
+                                            type="text"
+                                            id="username"
+                                            name="username"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                        />
+                                    </label>
 
-                <label htmlFor="password-field">
-                    Password:
-                    <input
-                        type="password"
-                        id="password-field"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
-                {error && <p className="error">The combination username and password is incorrect</p>}
+                                    <label htmlFor="password-field">
+                                        Password:
+                                        <input
+                                            type="password"
+                                            id="password-field"
+                                            name="password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                    </label>
+                                    {error &&
+                                        <p className="error">The combination username and password is incorrect</p>}
 
-                <button
-                    type="submit"
-                    className="form-button"
-                >
-                    Log in
-                </button>
-            </form>
+                                    <button
+                                        type="submit"
+                                        className="form-button"
+                                    >
+                                        Log in
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </header>
 
                 <footer className="process-container">
-                    <Footer />
+                    <Footer/>
                 </footer>
             </div>
 
