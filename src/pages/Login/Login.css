@@ -1,0 +1,8 @@
+.login {
+    display: flex;
+    flex-direction: column;
+}
+
+.login h3 {
+    margin-bottom: 10px;
+}

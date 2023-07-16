@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../Availability/Availability.css';
 import axios from 'axios';
 
-const Availability = ({ onAvailabilityChecked }) => {
+const Availability = ({onAvailabilityChecked}) => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const [bikeQuantity, setBikeQuantity] = useState(1); // Initialize bike quantity with a default value
+    const [bikeQuantity, setBikeQuantity] = useState(1);
     const [bikeAvailability, setBikeAvailability] = useState('');
     const [carAvailability, setCarAvailability] = useState('');
+    const [formError, setFormError] = useState('');
 
     const handleCheckBikeAvailability = () => {
+        if (!startDate || !endDate || !bikeQuantity) {
+            setFormError('Please fill in all fields');
+            return;
+        }
+
         axios
             .get('http://localhost:8080/bikes/checkAvailability', {
                 params: {
@@ -23,6 +29,7 @@ const Availability = ({ onAvailabilityChecked }) => {
             .then((response) => {
                 setBikeAvailability(response.data);
                 onAvailabilityChecked(response.data);
+                setFormError('');
             })
             .catch((error) => {
                 console.error('Error whilst retrieving bike availability', error);
@@ -30,6 +37,11 @@ const Availability = ({ onAvailabilityChecked }) => {
     };
 
     const handleCheckCarAvailability = () => {
+        if (!startDate || !endDate || !bikeQuantity) {
+            setFormError('Please fill in all fields');
+            return;
+        }
+
         axios
             .get('http://localhost:8080/cars/checkAvailability', {
                 params: {
@@ -40,6 +52,7 @@ const Availability = ({ onAvailabilityChecked }) => {
             .then((response) => {
                 setCarAvailability(response.data);
                 onAvailabilityChecked(response.data);
+                setFormError('');
             })
             .catch((error) => {
                 console.error('Error whilst retrieving car availability:', error);
@@ -49,23 +62,24 @@ const Availability = ({ onAvailabilityChecked }) => {
     return (
         <div className="availability">
             <h1>Check Availability</h1>
+            {formError && <p className="error">{formError}</p>}
             <div>
                 <DatePicker classname="custom-datepicker"
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    selectsStart
-                    startDate={startDate}
-                    dateFormat="yyyy-MM-dd"
-                    endDate={endDate}
+                            selected={startDate}
+                            onChange={(date) => setStartDate(date)}
+                            selectsStart
+                            startDate={startDate}
+                            dateFormat="yyyy-MM-dd"
+                            endDate={endDate}
                 />
                 <DatePicker classname="custom-datepicker"
-                    selected={endDate}
-                    onChange={(date) => setEndDate(date)}
-                    selectsEnd
-                    startDate={startDate}
-                    dateFormat="yyyy-MM-dd"
-                    endDate={endDate}
-                    minDate={startDate}
+                            selected={endDate}
+                            onChange={(date) => setEndDate(date)}
+                            selectsEnd
+                            startDate={startDate}
+                            dateFormat="yyyy-MM-dd"
+                            endDate={endDate}
+                            minDate={startDate}
                 />
                 <input
                     type="number"
